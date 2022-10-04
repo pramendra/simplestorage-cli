@@ -195,3 +195,17 @@ $ test/greet.test.ts
 $ npm test
 
 ```
+
+### setup env
+
+```bash
+$ npm install --save-dev dotenv-cli
+```
+
+#### update script
+
+```
+"scripts": {
+  "start:dev": "dotenv -e .env -- nodemon",
+},
+```
