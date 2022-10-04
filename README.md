@@ -84,6 +84,33 @@ add following
 ```
 
 #### test configuration
+
 ```bash
 $ npm run start:dev
+```
+
+### setup vscode
+
+```bash
+$ mkdir .vscode
+$ touch .vscode/settings.json
+```
+
+#### configure vscode
+
+```
+{
+  "eslint.enable": true,
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "javascript.validate.enable": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "node_modules/": true,
+    "dist/": true,
+    "npm": true
+  }
+}
 ```

@@ -1,0 +1,14 @@
+{
+  "eslint.enable": true,
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "javascript.validate.enable": false,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "node_modules/": true,
+    "dist/": true,
+    "npm": true
+  }
+}
