@@ -157,3 +157,41 @@ add folllowing to .prettierrc
   "arrowParens": "always"
 }
 ```
+
+### setup test
+
+```bash
+$ npm install --save-dev jest ts-jest @types/jest
+$ mkdir tests
+$ tests/index.test.ts
+```
+
+#### configure jest
+
+```bash
+$ npx ts-jest config:init
+```
+
+> make necessary changes in jest.config.js
+
+#### add test script
+
+```
+"scripts": {
+  "test": "jest"
+},
+```
+
+#### create and test greet
+
+```bash
+$ touch src/greet.ts
+$ test/greet.test.ts
+```
+
+#### test the configuration
+
+```bash
+$ npm test
+
+```
