@@ -114,3 +114,46 @@ $ touch .vscode/settings.json
   }
 }
 ```
+
+### setup code lint
+
+```bash
+$ npm install --save-dev prettier tslint tslint-config-prettier tslint-plugin-prettier
+```
+
+#### configure tslint
+
+```bash
+$ touch tslint.json
+```
+
+##### add following to tslint.json
+
+```
+{
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "rules": {
+    "prettier": true
+  }
+}
+```
+
+#### configure code formating
+
+```bash
+$ touch .prettierrc
+```
+
+add folllowing to .prettierrc
+
+```
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "bracketSpacing": true,
+  "arrowParens": "always"
+}
+```
