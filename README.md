@@ -209,3 +209,84 @@ $ npm install --save-dev dotenv-cli
   "start:dev": "dotenv -e .env -- nodemon",
 },
 ```
+
+### setup docker dev
+
+#### Create docker-compose.yml
+
+```
+version: '3'
+services:
+  dev-app:
+    container_name: dev-simple-storage
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    env_file: .env
+    volumes:
+      - ./jest.config.js:/app/jest.config.js
+      - ./nodemon.json:/app/nodemon.json
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./tslint.json:/app/tslint.json
+      - ./src:/app/src
+      - ./tests:/app/tests
+    command: npm run start:dev
+
+```
+
+#### Create Dockerfile
+
+```
+FROM node:18-alpine3.15
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+```
+
+#### how to run docker in dev environment
+
+##### build and run image
+
+```bash
+$ docker-compose up -d --build --remove-orphans
+```
+
+#### Logs of running dev container
+
+```bash
+$ docker logs dev-simple-storage -f
+```
+
+#### Jump into container shell
+
+```bash
+$ docker-compose exec dev-app sh
+```
+
+#### Other helpful docker command
+
+```
+List all images
+
+docker image ls
+Remove all images at once
+
+docker rmi $(docker images -q)
+Containers
+List all active containers
+
+docker ps
+List all active and dead containers
+
+docker ps -a
+Stop all running containers
+
+docker stop $(docker ps -a -q)
+Delete all stopped containers:
+
+docker rm $(docker ps -a -q)
+```

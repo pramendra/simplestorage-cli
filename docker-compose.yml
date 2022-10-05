@@ -1,0 +1,17 @@
+version: '3'
+services:
+  dev-app:
+    container_name: dev-simple-storage
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    env_file: .env
+    volumes:
+      - ./jest.config.js:/app/jest.config.js
+      - ./nodemon.json:/app/nodemon.json
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./tslint.json:/app/tslint.json
+      - ./src:/app/src
+      - ./tests:/app/tests
+    command: npm run start:dev
