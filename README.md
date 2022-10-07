@@ -290,3 +290,17 @@ Delete all stopped containers:
 
 docker rm $(docker ps -a -q)
 ```
+
+### setup command
+
+```bash
+$ npm install yargs chalk
+$ npm install @types/yargs --save-dev
+```
+
+#### how to use
+
+```bash
+$ npx ts-node src/cli.ts greet japan --upper
+HELLO, JAPAN!%
+```
