@@ -304,3 +304,10 @@ $ npm install @types/yargs --save-dev
 $ npx ts-node src/cli.ts greet japan --upper
 HELLO, JAPAN!%
 ```
+
+### upload files to mounted volume
+
+```bash
+$ npm install cli-progress --save
+$ npm i --save-dev @types/cli-progress
+```

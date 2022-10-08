@@ -8,10 +8,13 @@ services:
     tty: true
     env_file: .env
     volumes:
+      - ./files:/app/files
+      - ./db/database.db:/app/db/database.dev.db
       - ./jest.config.js:/app/jest.config.js
       - ./nodemon.json:/app/nodemon.json
       - ./tsconfig.json:/app/tsconfig.json
       - ./tslint.json:/app/tslint.json
       - ./src:/app/src
       - ./tests:/app/tests
+      - ./node_modules/:/app/node_modules/
     command: npm run start:dev
