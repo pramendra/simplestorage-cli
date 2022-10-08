@@ -6,7 +6,11 @@ import cliProgress from 'cli-progress';
 type Options = {
   path: string;
 };
-const CHUNK_SIZE = 1 * 1024 * 1024;
+const CHUNK_SIZE = (
+  Number.isInteger(process.env.CHUNK_SIZE)
+    ? process.env.CHUNK_SIZE
+    : 1 * 1024 * 1024
+) as number;
 
 export const command: string = 'upload <path>';
 export const desc: string = 'Upload file';
@@ -43,8 +47,6 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
       length: size,
     });
 
-    const total = Math.ceil(size / CHUNK_SIZE);
-
     let chunkNumber = 0;
     let transferred = 0;
 
@@ -60,12 +62,11 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
           readStream.pause();
           writeStream.write(chunk);
           const number = (chunkNumber + 1).toString();
-          // parts.push({ eTag, number });
 
           chunkNumber++;
           transferred += chunk.length;
 
-          // // update the progress bar
+          // update the progress bar
           bar.update((transferred / size) * 100, {
             filename: filePath,
             transferred: transferred,
