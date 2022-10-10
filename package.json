@@ -5,7 +5,7 @@
   "main": "./dist/cli.js",
   "scripts": {
     "start:dev": "NODE_ENV=development dotenv -e .env -- nodemon",
-    "build": "NODE_ENV=production && rm -rf ./dist && tsc",
+    "build": "rm -rf ./dist && NODE_ENV=production dotenv -e .env.production tsc",
     "test": "jest"
   },
   "keywords": [],
