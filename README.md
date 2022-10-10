@@ -311,3 +311,10 @@ HELLO, JAPAN!%
 $ npm install cli-progress --save
 $ npm i --save-dev @types/cli-progress
 ```
+
+### how to encrypt/decrypt file
+
+```bash
+$ npx ts-node src/cli.ts upload ./package.json
+$ npx ts-node src/cli.ts download ./files/package.json.encrypt
+```

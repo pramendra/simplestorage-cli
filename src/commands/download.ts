@@ -1,7 +1,7 @@
 import type { Arguments, CommandBuilder } from 'yargs';
 import 'dotenv/config';
 import { decrypt } from './../utilities/encryption';
-import { getFileInfo } from './../utilities/file';
+import { getFileInfo, getTargerDownloadFilePath } from './../utilities/file';
 
 type Options = {
   fileid: string;
@@ -19,9 +19,8 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
     try {
       const { fileid: p = './' } = argv;
       const { isFile, fileName, filePath } = getFileInfo(p);
-      console.warn({ p, isFile, fileName, filePath });
       if (isFile === true) {
-        const targetFile = `./files/${fileName}.decoded`;
+        const targetFile = getTargerDownloadFilePath(fileName);
 
         decrypt({
           fileName: filePath,

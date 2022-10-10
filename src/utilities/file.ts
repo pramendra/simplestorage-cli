@@ -16,3 +16,12 @@ export const getFileInfo = (p: string): GetInfoReturn => {
     fileName: file,
   };
 };
+
+const UPLOAD_PATH = './files';
+export const getTargerUploadFilePath = (fileName: string) => {
+  return `./${UPLOAD_PATH}/${fileName}.encrypt`;
+};
+
+export const getTargerDownloadFilePath = (fileName: string) => {
+  return `./${UPLOAD_PATH}/${fileName}.decrypt`;
+};
