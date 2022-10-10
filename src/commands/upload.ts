@@ -1,7 +1,7 @@
 import type { Arguments, CommandBuilder } from 'yargs';
 import 'dotenv/config';
 import { encrypt } from './../utilities/encryption';
-import { getFileInfo, getTargerUploadFilePath } from './../utilities/file';
+import { getFileInfo, getEncryptFilePath } from './../utilities/file';
 type Options = {
   path: string;
 };
@@ -18,7 +18,7 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
   await new Promise((resolve, reject) => {
     try {
       if (isFile) {
-        const targetFile = getTargerUploadFilePath(fileName);
+        const targetFile = getEncryptFilePath(fileName);
         encrypt({
           fileName: filePath,
           password: cryptPassword,
