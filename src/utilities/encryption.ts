@@ -52,6 +52,7 @@ export const encrypt = async ({
         })
         .on('error', reject);
     } catch (error: any) {
+      console.warn(error.toString());
       reject();
     }
   });

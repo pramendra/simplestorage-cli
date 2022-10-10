@@ -34,9 +34,9 @@ export const getFileInfo = (p: string): GetInfoReturn => {
 export const UPLOAD_PATH = 'files';
 export const randomId = () => uuid();
 export const getEncryptFilePath = (fileName: string, uuid: string) => {
-  return `./${UPLOAD_PATH}/${uuid}`;
+  return path.join(__dirname, '../../', UPLOAD_PATH, uuid);
 };
 
 export const getDecryptFilePath = (fileName: string) => {
-  return `./${UPLOAD_PATH}/${fileName}`;
+  return path.join(__dirname, '../../', UPLOAD_PATH, fileName);
 };

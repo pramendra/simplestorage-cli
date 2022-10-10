@@ -1,4 +1,5 @@
 import type { Arguments, CommandBuilder } from 'yargs';
+import 'dotenv/config';
 import path from 'path';
 import chalk from 'chalk';
 import { getFileInfo, getDecryptFilePath } from '../utilities/file';
