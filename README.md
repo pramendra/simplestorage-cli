@@ -1,29 +1,110 @@
-## How to build
+# Simple file storage server with a CLI interface
+
+## Overview
+
+A simple file storage server securely helps manage files to servers.
+
+### Feaatures
+
+#### Functional features
+
+1. Upload a file: POST /files/<name>, Content-Type: multipart/form-data
+2. Delete a file: DELETE /files/<fileid>
+3. List uploaded files (if a file is uploaded then deleted it should not be listed): GET
+   /files returns a list of files: [{id:”...”, name: “file1.txt”}, {id:”...”, name:”file2.txt”}]
+4. Download a file by id: GET /files/<fileid>
+
+#### Nonfunctional features
+
+- Files are protected with encryption
+- Supports CLI help
+
+### How it works
+
+#### CLI help
 
 ```bash
-$ npm run build
+$ docker run -it  simplestorage-simple-storage cli -h
 ```
 
-### test the build
+##### CLI output
 
-```bash
-$ NODE_ENV=production node dist/src/cli.js -h
+```
+cli [command]
+
+Commands:
+  cli delete <fileid>    Delete a file
+  cli download <fileid>  Download a file
+  cli list               Lists files
+  cli upload <path>      Upload a file
+
+Options:
+      --version  Show version number                                   [boolean]
+  -h, --help     Show help                                             [boolean]
 ```
 
-## How to setup development
+#### Upload a file
 
 ```bash
+$ docker run -it -v $(pwd)/data:/data -v $(pwd)/files:/app/files simplestorage-simple-storage cli upload /test/upload-test.txt
+```
+
+#### Download a file
+
+```bash
+$ docker run -it -v $(pwd)/data:/data -v $(pwd)/files:/app/files simplestorage-simple-storage cli download 56b7ff5a-fe49-496a-a21d-00c3c86bb1f6 --out /data
+
+```
+
+#### List uploaded files
+
+```bash
+$ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli list
+
+```
+
+#### Delete a file
+
+```bash
+$ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli delete cb8e8300-4f4c-45c1-a116-d4a234c7c52f
+
+```
+
+---
+
+## Build production
+
+### Prepare environment variable
+
+```bash
+$ cp .env.example .env.production
+```
+
+> update environement variable
+
+### Build docker image
+
+```bash
+$ docker-compose up -d --build simple-storage --remove-orphans
+```
+
+---
+
+## Setup development
+
+```bash
+$ cp .env.example .env.development
 $ nvm use
 $ npm i
 ```
 
-### test dev
+### Run CLI in a development environment
 
 ```bash
 $ npx ts-node src/cli.ts -h
 ```
 
-#### outpub
+#### output
 
 ```
 cli.ts [command]
@@ -34,7 +115,7 @@ Commands:
   cli.ts upload <path>      Upload a file
 ```
 
-### Upload a file
+#### Upload a file
 
 ```bash
 $ npx ts-node src/cli.ts upload ./package.json
@@ -42,7 +123,7 @@ $ npx ts-node src/cli.ts upload ./package.json
 
 > uploaded files are encrypted
 
-### Download a file
+#### Download a file
 
 ```bash
 $ npx ts-node src/cli.ts --out ./db download 318dd246-bc99-4e0b-acf0-7d97c53f1c40
@@ -50,7 +131,7 @@ $ npx ts-node src/cli.ts --out ./db download 318dd246-bc99-4e0b-acf0-7d97c53f1c4
 
 > downloaded files are decryped and downloaded into output directory
 
-### Delete a file
+#### Delete a file
 
 ```bash
 $ npx ts-node src/cli.ts delete f887ad29-441f-4f3a-a290-20d1f5a39914
@@ -58,7 +139,7 @@ $ npx ts-node src/cli.ts delete f887ad29-441f-4f3a-a290-20d1f5a39914
 
 > delete file with fileid
 
-### List files
+#### List files
 
 ```bash
 $ npx ts-node src/cli.ts list
@@ -66,7 +147,7 @@ $ npx ts-node src/cli.ts list
 
 > list all files
 
-## Tutorial
+## Dev Tutorial
 
 ### Create a source directory
 
@@ -86,7 +167,7 @@ $ node -v
 ### Set node version
 
 ```bash
-$ touch .nvmrc
+$ echo $(node -v) > .nvmrc
 ```
 
 ### use node version
@@ -189,13 +270,9 @@ $ touch .vscode/settings.json
 $ npm install --save-dev prettier tslint tslint-config-prettier tslint-plugin-prettier
 ```
 
-#### configure tslint
+#### configure Typescript Lint
 
-```bash
-$ touch tslint.json
-```
-
-##### add following to tslint.json
+add the following to tslint.json
 
 ```
 {
@@ -206,13 +283,9 @@ $ touch tslint.json
 }
 ```
 
-#### configure code formating
+#### configure code formatting
 
-```bash
-$ touch .prettierrc
-```
-
-add folllowing to .prettierrc
+add the following to .prettierrc
 
 ```
 {
@@ -285,7 +358,7 @@ $ npm install --save-dev dotenv-cli
 ```
 version: '3'
 services:
-  dev-app:
+  dev-simple-storage:
     container_name: dev-simple-storage
     build:
       context: .
@@ -315,7 +388,7 @@ COPY package*.json ./
 RUN npm install
 ```
 
-#### how to run docker in dev environment
+#### how to run docker in a dev environment
 
 ##### build and run image
 
@@ -325,64 +398,67 @@ $ docker-compose up -d --build --remove-orphans
 
 #### Logs of running dev container
 
-```bash
-$ docker logs dev-simple-storage -f
-```
-
-#### Jump into container shell
+Jump into the container shell
 
 ```bash
-$ docker-compose exec dev-app sh
+$ docker-compose exec dev-simple-storage sh
 ```
 
-#### Other helpful docker command
+#### Other helpful docker commands
+
+##### List all images
+
+```bash
+$ docker image ls
 
 ```
-List all images
 
-docker image ls
-Remove all images at once
+##### Remove all images at once
 
-docker rmi $(docker images -q)
-Containers
-List all active containers
-
-docker ps
-List all active and dead containers
-
-docker ps -a
-Stop all running containers
-
-docker stop $(docker ps -a -q)
-Delete all stopped containers:
-
-docker rm $(docker ps -a -q)
+```bash
+$ docker rmi $(docker images -q)
 ```
 
-### setup command line
+##### List all active containers
+
+```bash
+$ docker ps
+```
+
+##### List all active and dead containers
+
+```bash
+$ docker ps -a
+```
+
+##### Stop all running containers
+
+```bash
+$docker stop $(docker ps -a -q)
+```
+
+##### Delete all stopped containers:
+
+```bash
+$ docker rm $(docker ps -a -q)
+```
+
+### Setup command line
 
 ```bash
 $ npm install yargs
 $ npm install @types/yargs --save-dev
 ```
 
-#### how to use
+#### How to use
 
 ```bash
-$ npx ts-node src/cli.ts greet japan --upper
-HELLO, JAPAN!%
+$ npx ts-node src/cli.ts -h
 ```
 
-### upload files to mounted volume
+### Add CLI progress animation lib
 
 ```bash
 $ npm install cli-progress --save
 $ npm i --save-dev @types/cli-progress
-```
-
-### how to encrypt/decrypt file
-
-```bash
-$ npx ts-node src/cli.ts upload ./package.json
-$ npx ts-node src/cli.ts download ./files/package.json.encrypt
 ```
