@@ -18,8 +18,7 @@ export default class AppendInitVect extends Transform {
     this.bar = new MultiBar({
       clearOnComplete: false,
       hideCursor: false,
-      format:
-        '[{bar}] {percentage}% | {transferred}/{length} bytes | {filename}',
+      format: '[{bar}] {percentage}% | {transferred}/{length} bytes',
     });
     this.transferred = 0;
     this.progress = this.bar.create(100, 0, {
