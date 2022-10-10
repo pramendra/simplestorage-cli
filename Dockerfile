@@ -7,4 +7,5 @@ COPY ["jest.config.js", "nodemon.json", "tsconfig.json", "tslint.json", "./"]
 COPY src ./src
 COPY tests ./test
 
+ENV NODE_ENV development
 RUN npm install
