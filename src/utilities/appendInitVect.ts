@@ -9,6 +9,7 @@ export default class AppendInitVect extends Transform {
 
   constructor(
     protected initVect: Buffer,
+    protected fileName: string,
     protected barLength: number,
     opts?: TransformOptions
   ) {
@@ -18,11 +19,11 @@ export default class AppendInitVect extends Transform {
     this.bar = new MultiBar({
       clearOnComplete: false,
       hideCursor: false,
-      format: '[{bar}] {percentage}% | {transferred}/{length} bytes',
+      format: '[{bar}] {percentage}% | {filename}',
     });
     this.transferred = 0;
     this.progress = this.bar.create(100, 0, {
-      // filename: filePath,
+      filename: this.fileName,
       transferred: 0,
       length: this.barLength,
     });
@@ -44,7 +45,7 @@ export default class AppendInitVect extends Transform {
     this.transferred += chunk.length;
 
     this.progress.update((this.transferred / this.barLength) * 100, {
-      // filename: filePath,
+      filename: this.fileName,
       transferred: this.transferred,
       length: this.barLength,
     });

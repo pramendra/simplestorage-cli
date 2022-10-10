@@ -40,7 +40,7 @@ export const encrypt = async ({
 
       // transform content into chunks
       const { size } = fs.statSync(fileName);
-      const appendInitVect = new AppendInitVect(initVect, size);
+      const appendInitVect = new AppendInitVect(initVect, fileName, size);
 
       readStream
         .pipe(cipher)

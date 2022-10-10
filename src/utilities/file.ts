@@ -30,9 +30,10 @@ export const getFileInfo = (p: string): GetInfoReturn => {
   };
 };
 
-const UPLOAD_PATH = 'files';
-export const getEncryptFilePath = (fileName: string) => {
-  return `./${UPLOAD_PATH}/${uuid()}`;
+export const UPLOAD_PATH = 'files';
+export const randomId = () => uuid();
+export const getEncryptFilePath = (fileName: string, uuid: string) => {
+  return `./${UPLOAD_PATH}/${uuid}`;
 };
 
 export const getDecryptFilePath = (fileName: string) => {

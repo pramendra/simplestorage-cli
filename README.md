@@ -1,3 +1,37 @@
+## How to use in development mode
+
+### Upload a file
+
+```bash
+$ npx ts-node src/cli.ts upload ./package.json
+```
+
+> uploaded files are encrypted
+
+### Download a file
+
+```bash
+$ npx ts-node src/cli.ts --out ./db download 318dd246-bc99-4e0b-acf0-7d97c53f1c40
+```
+
+> downloaded files are decryped and downloaded into output directory
+
+### Delete a file
+
+```bash
+$ npx ts-node src/cli.ts delete f887ad29-441f-4f3a-a290-20d1f5a39914
+```
+
+> delete file with fileid
+
+### List files
+
+```bash
+$ npx ts-node src/cli.ts list
+```
+
+> list all files
+
 ## Tutorial
 
 ### Create a source directory

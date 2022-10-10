@@ -1,7 +1,7 @@
 import type { Arguments, CommandBuilder } from 'yargs';
 import 'dotenv/config';
 import { encrypt } from './../utilities/encryption';
-import { getFileInfo, getEncryptFilePath } from './../utilities/file';
+import { getFileInfo, getEncryptFilePath, randomId } from './../utilities/file';
 type Options = {
   path: string;
 };
@@ -15,16 +15,16 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
 export const handler = async (argv: Arguments<Options>): Promise<void> => {
   const { path: p = './' } = argv;
   const { isFile, fileName, filePath } = getFileInfo(p);
+  const uuid = randomId();
   await new Promise((resolve, reject) => {
     try {
       if (isFile) {
-        const targetFile = getEncryptFilePath(fileName);
+        const targetFile = getEncryptFilePath(fileName, uuid);
         encrypt({
           fileName: filePath,
           password: cryptPassword,
           targetFile,
         });
-        process.stdout.write(`\nSuccessfully uploaded: ${targetFile}\n`);
       } else {
         process.stdout.write(`\nUnable to upload\n`);
       }
@@ -32,6 +32,5 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
       console.warn(error.toString());
     }
   });
-
   process.exit(0);
 };
