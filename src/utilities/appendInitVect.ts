@@ -1,6 +1,6 @@
 import { Transform, TransformOptions, TransformCallback } from 'stream';
 import { SingleBar, MultiBar, Presets } from 'cli-progress';
-
+import chalk from 'chalk';
 export default class AppendInitVect extends Transform {
   protected appended: boolean;
   private transferred: number;
@@ -19,7 +19,7 @@ export default class AppendInitVect extends Transform {
     this.bar = new MultiBar({
       clearOnComplete: false,
       hideCursor: false,
-      format: '[{bar}] {percentage}% | {filename}',
+      format: chalk.green('[{bar}] {percentage}% | {filename}'),
     });
     this.transferred = 0;
     this.progress = this.bar.create(100, 0, {

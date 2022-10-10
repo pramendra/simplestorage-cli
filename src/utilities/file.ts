@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import chalk from 'chalk';
 import { uuid } from './../utilities/cipher';
 
 interface GetInfoReturn {
@@ -20,7 +21,7 @@ export const getFileInfo = (p: string): GetInfoReturn => {
       fileName: file,
     };
   } catch (error: any) {
-    console.warn('>>', error.toString());
+    process.stdout.write(chalk.red(`\nUnable to find: ${path.basename(p)}\n`));
   }
 
   return {

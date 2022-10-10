@@ -16,20 +16,25 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
     if (isDir) {
       fs.readdir(UPLOAD_PATH, (err, files) => {
         if (err) {
-          return console.log('files dont exits: ' + err);
+          reject();
         }
 
         files.forEach((file: string, index: number) => {
           const colorLine = index % 2 ? chalk.green.inverse : chalk.green;
           process.stdout.write(colorLine(`${index + 1}. `, file, '\n'));
         });
-
-        process.stdout.write(chalk.white.inverse('\n\n'));
+        resolve('done');
       });
     } else {
-      process.stdout.write(`files dont exits`);
+      reject();
     }
-  });
-  process.stdout.write(`list files`);
+  }).then(
+    (result) => {
+      process.exit(0);
+    },
+    (error) => {
+      process.stdout.write(chalk.red(`File(s) dont exits\n`));
+    }
+  );
   process.exit(0);
 };

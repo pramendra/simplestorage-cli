@@ -1,7 +1,8 @@
 import type { Arguments, CommandBuilder } from 'yargs';
 import path from 'path';
-import { getFileInfo, getDecryptFilePath } from './../utilities/file';
-import { decrypt } from './../utilities/encryption';
+import chalk from 'chalk';
+import { getFileInfo, getDecryptFilePath } from '../utilities/file';
+import { decrypt } from '../utilities/encryption';
 
 type Options = {
   fileid: string;
@@ -37,21 +38,39 @@ export const handler = async (argv: Arguments<Options>): Promise<void> => {
         const targetFile = path.join(outdir, fileName);
         const cryptPassword = process.env.ENCRYPT_KEY as string;
 
-        decrypt({
+        const promise = decrypt({
           fileName: filePath,
           password: cryptPassword,
           targetFile,
         });
 
-        process.stdout.write(`${fileid} downloaded successfully`);
+        promise.then(
+          (result) => {
+            if (result === 'done') {
+              process.stdout.write(
+                chalk.green(`${fileid} downloaded successfully\n`)
+              );
+              resolve('done');
+            }
+          },
+          (error) => {
+            reject();
+          }
+        );
       } catch (error: any) {
-        console.warn(error.toString());
-        process.stdout.write(`Unable to download ${fileid}!`);
+        reject();
       }
     } else {
-      process.stdout.write(`Unable to download ${fileid}!`);
+      reject();
     }
-  });
+  }).then(
+    (result) => {
+      process.exit(0);
+    },
+    (error) => {
+      process.stdout.write(chalk.red(`Unable to download ${fileid}!\n`));
+    }
+  );
 
   process.exit(0);
 };

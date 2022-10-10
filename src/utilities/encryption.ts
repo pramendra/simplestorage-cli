@@ -11,8 +11,6 @@ const CHUNK_SIZE = (
     : 1 * 1024 * 1024
 ) as number;
 
-// const CHUNK_SIZE = 10;
-
 interface EncryptionOptions {
   fileName: string;
   targetFile: string;
@@ -23,8 +21,8 @@ export const encrypt = async ({
   fileName,
   targetFile,
   password,
-}: EncryptionOptions): Promise<void> => {
-  await new Promise((resolve, reject) => {
+}: EncryptionOptions): Promise<any> => {
+  return await new Promise((resolve, reject) => {
     try {
       const readStream = fs.createReadStream(fileName, {
         highWaterMark: CHUNK_SIZE,
@@ -38,7 +36,6 @@ export const encrypt = async ({
 
       const gzip = zlib.createGzip();
 
-      // transform content into chunks
       const { size } = fs.statSync(fileName);
       const appendInitVect = new AppendInitVect(initVect, fileName, size);
 
@@ -47,8 +44,15 @@ export const encrypt = async ({
         .pipe(gzip) //
         .pipe(appendInitVect)
         .pipe(writeStream);
+
+      writeStream
+        .on('finish', () => {
+          resolve('done');
+          writeStream.end();
+        })
+        .on('error', reject);
     } catch (error: any) {
-      console.warn(error.toString());
+      reject();
     }
   });
 };
@@ -58,36 +62,41 @@ export const decrypt = async ({
   fileName,
   password,
   targetFile,
-}: DecryptionOptions): Promise<void> => {
-  await new Promise((resolve, reject) => {
-    try {
-      // First, get the initialization vector from the file.
-      const readInitVect = fs.createReadStream(fileName, {
-        end: 15,
-      });
+}: DecryptionOptions): Promise<any> => {
+  return await new Promise((resolve, reject) => {
+    // First, get the initialization vector from the file.
+    const readInitVect = fs.createReadStream(fileName, {
+      end: 15,
+    });
 
-      let initVect: any;
-      readInitVect.on('data', (chunk) => {
-        initVect = chunk;
-      });
+    let initVect: any;
+    readInitVect.on('data', (chunk) => {
+      initVect = chunk;
+    });
 
-      // Once we’ve got the initialization vector, we can decrypt the file.
-      readInitVect.on('close', () => {
-        const decipher = getDecipher(password, initVect);
-        const unzip = zlib.createUnzip();
+    // Once we’ve got the initialization vector, we can decrypt the file.
+    readInitVect.on('close', () => {
+      const decipher = getDecipher(password, initVect);
+      const unzip = zlib.createUnzip();
 
-        const writeStream = fs.createWriteStream(targetFile);
-        const readStream = fs.createReadStream(fileName, { start: 16 });
-        // const appendInitVect = new AppendInitVect(initVect, size);
+      const writeStream = fs.createWriteStream(targetFile);
+      const readStream = fs.createReadStream(fileName, { start: 16 });
+      // const appendInitVect = new AppendInitVect(initVect, size);
 
-        readStream
-          .pipe(unzip)
-          // .pipe(appendInitVect)
-          .pipe(decipher) //
-          .pipe(writeStream);
-      });
-    } catch (error: any) {
-      console.warn(error.toString());
-    }
+      readStream
+        .pipe(unzip)
+        // .pipe(appendInitVect)
+        .pipe(decipher) //
+        .pipe(writeStream);
+
+      writeStream
+        .on('finish', () => {
+          resolve('done');
+          writeStream.end();
+        })
+        .on('error', reject);
+    });
+  }).catch((error) => {
+    console.log(error);
   });
 };
