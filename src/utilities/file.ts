@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { uuid } from './../utilities/cipher';
 
 interface GetInfoReturn {
   isFile: boolean;
@@ -7,21 +8,33 @@ interface GetInfoReturn {
   fileName: string;
 }
 export const getFileInfo = (p: string): GetInfoReturn => {
-  const isFile = fs.lstatSync(p).isFile();
-  const filePath = isFile ? p : path.join(p);
-  const file = path.basename(filePath);
+  let isFile = false;
+  try {
+    isFile = fs.lstatSync(p).isFile();
+    const filePath = isFile ? p : path.join(p);
+    const file = path.basename(filePath);
+
+    return {
+      isFile,
+      filePath,
+      fileName: file,
+    };
+  } catch (error: any) {
+    console.warn('>>', error.toString());
+  }
+
   return {
     isFile,
-    filePath,
-    fileName: file,
+    filePath: '',
+    fileName: '',
   };
 };
 
-const UPLOAD_PATH = './files';
-export const getTargerUploadFilePath = (fileName: string) => {
-  return `./${UPLOAD_PATH}/${fileName}.encrypt`;
+const UPLOAD_PATH = 'files';
+export const getEncryptFilePath = (fileName: string) => {
+  return `./${UPLOAD_PATH}/${uuid()}`;
 };
 
-export const getTargerDownloadFilePath = (fileName: string) => {
-  return `./${UPLOAD_PATH}/${fileName}.decrypt`;
+export const getDecryptFilePath = (fileName: string) => {
+  return `./${UPLOAD_PATH}/${fileName}`;
 };

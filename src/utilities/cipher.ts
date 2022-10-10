@@ -1,5 +1,6 @@
-import crypto, { Cipher, BinaryLike } from 'crypto';
+import crypto, { Cipher, BinaryLike, randomUUID } from 'crypto';
 
+export const uuid = () => randomUUID();
 export function getCipherKey(password: string) {
   return crypto.createHash('sha256').update(password).digest();
 }
