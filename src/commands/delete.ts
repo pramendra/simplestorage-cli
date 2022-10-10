@@ -8,7 +8,7 @@ type Options = {
 };
 
 export const command: string = 'delete <fileid>';
-export const desc: string = 'delete file';
+export const desc: string = 'Delete a file';
 
 export const builder: CommandBuilder<Options, Options> = (yargs) =>
   yargs.positional('fileid', { type: 'string', demandOption: true });

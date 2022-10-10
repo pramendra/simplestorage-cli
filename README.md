@@ -1,4 +1,38 @@
-## How to use in development mode
+## How to build
+
+```bash
+$ npm run build
+```
+
+### test the build
+
+```bash
+$ NODE_ENV=production node dist/src/cli.js -h
+```
+
+## How to setup development
+
+```bash
+$ nvm use
+$ npm i
+```
+
+### test dev
+
+```bash
+$ npx ts-node src/cli.ts -h
+```
+
+#### outpub
+
+```
+cli.ts [command]
+Commands:
+  cli.ts delete <fileid>    Delete a file
+  cli.ts download <fileid>  Download a file
+  cli.ts list               Lists files
+  cli.ts upload <path>      Upload a file
+```
 
 ### Upload a file
 

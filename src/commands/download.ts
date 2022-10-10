@@ -10,7 +10,7 @@ type Options = {
 };
 
 export const command: string = 'download <fileid>';
-export const desc: string = 'Download file';
+export const desc: string = 'Download a file';
 
 export const builder: CommandBuilder<Options, Options> = (yargs) =>
   yargs

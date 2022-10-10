@@ -9,7 +9,7 @@ type Options = {
 
 const cryptPassword = process.env.ENCRYPT_KEY as string;
 export const command: string = 'upload <path>';
-export const desc: string = 'Upload file';
+export const desc: string = 'Upload a file';
 export const builder: CommandBuilder<Options, Options> = (yargs) =>
   yargs.positional('path', { type: 'string', demandOption: true });
 
