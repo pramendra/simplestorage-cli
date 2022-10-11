@@ -1,5 +1,4 @@
 import type { Arguments, CommandBuilder } from 'yargs';
-import 'dotenv/config';
 import chalk from 'chalk';
 import { encrypt } from './../utilities/encryption';
 import { getFileInfo, getEncryptFilePath, randomId } from './../utilities/file';

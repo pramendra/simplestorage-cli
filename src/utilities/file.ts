@@ -34,9 +34,35 @@ export const getFileInfo = (p: string): GetInfoReturn => {
 export const UPLOAD_PATH = 'files';
 export const randomId = () => uuid();
 export const getEncryptFilePath = (fileName: string, uuid: string) => {
-  return path.join(__dirname, '../../', UPLOAD_PATH, uuid);
+  return path.join(
+    __dirname,
+    '../../',
+    UPLOAD_PATH,
+    [uuid, fileName].join('###')
+  );
 };
 
 export const getDecryptFilePath = (fileName: string) => {
   return path.join(__dirname, '../../', UPLOAD_PATH, fileName);
+};
+
+export const findFileByID = async (dirPath: string, id: string) => {
+  let returnMatchedName: string | null = null;
+  try {
+    const isDir = fs.lstatSync(dirPath).isDirectory();
+    if (isDir) {
+      fs.readdirSync(dirPath).filter((file) => {
+        const [fileid, name] = file.split('###');
+        if (fileid === id) {
+          returnMatchedName = name;
+          return true;
+        } else {
+          return false;
+        }
+      });
+    }
+  } catch (error) {
+    console.warn(error);
+  }
+  return returnMatchedName;
 };

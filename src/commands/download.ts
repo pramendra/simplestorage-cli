@@ -1,8 +1,12 @@
 import type { Arguments, CommandBuilder } from 'yargs';
-import 'dotenv/config';
 import path from 'path';
 import chalk from 'chalk';
-import { getFileInfo, getDecryptFilePath } from '../utilities/file';
+import {
+  getFileInfo,
+  getDecryptFilePath,
+  findFileByID,
+  UPLOAD_PATH,
+} from '../utilities/file';
 import { decrypt } from '../utilities/encryption';
 
 type Options = {
@@ -28,15 +32,22 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
 
 export const handler = async (argv: Arguments<Options>): Promise<void> => {
   const { fileid, outdir } = argv;
-
+  const matchedSourceFileName = (await findFileByID(UPLOAD_PATH, fileid)) || '';
   await new Promise((resolve, reject) => {
+    try {
+      if (matchedSourceFileName === null) {
+        reject();
+      }
+    } catch (error) {
+      reject();
+    }
     const { isFile, fileName, filePath } = getFileInfo(
-      getDecryptFilePath(fileid)
+      getDecryptFilePath([fileid, matchedSourceFileName].join('###'))
     );
 
-    if (isFile) {
+    if (isFile === true) {
       try {
-        const targetFile = path.join(outdir, fileName);
+        const targetFile = path.join(outdir, matchedSourceFileName);
         const cryptPassword = process.env.ENCRYPT_KEY as string;
 
         const promise = decrypt({

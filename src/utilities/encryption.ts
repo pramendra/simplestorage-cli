@@ -2,6 +2,8 @@ import crypto from 'crypto';
 import zlib from 'zlib';
 import path from 'path';
 import fs from 'fs';
+import * as mime from 'mime-types';
+import chalk from 'chalk';
 import { getCipher, getDecipher } from './cipher';
 import AppendInitVect from './appendInitVect';
 
@@ -27,8 +29,18 @@ export const encrypt = async ({
       const readStream = fs.createReadStream(fileName, {
         highWaterMark: CHUNK_SIZE,
       });
+
+      const contentType = mime.lookup(fileName);
+      const encoding: BufferEncoding = (mime
+        .charset(contentType.toString())
+        .toString()
+        .toLowerCase() ||
+        mime.contentType(path.extname(fileName))) as BufferEncoding;
+
       // Create a write stream with a different file extension.
-      const writeStream = fs.createWriteStream(path.join(targetFile));
+      const writeStream = fs.createWriteStream(path.join(targetFile), {
+        encoding,
+      });
 
       const initVect = crypto.randomBytes(16);
 
@@ -52,7 +64,7 @@ export const encrypt = async ({
         })
         .on('error', reject);
     } catch (error: any) {
-      console.warn(error.toString());
+      // console.warn('>>>>', error.toString());
       reject();
     }
   });
@@ -98,6 +110,7 @@ export const decrypt = async ({
         .on('error', reject);
     });
   }).catch((error) => {
-    console.log(error);
+    // console.log('>>', error.toString());
+    process.stdout.write(chalk.red(`\n ${error.toString()}\n`));
   });
 };

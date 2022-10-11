@@ -13,16 +13,29 @@ export const builder: CommandBuilder<Options, Options> = (yargs) => yargs;
 export const handler = async (argv: Arguments<Options>): Promise<void> => {
   await new Promise((resolve, reject) => {
     const isDir = fs.lstatSync(UPLOAD_PATH).isDirectory();
+
+    interface ListUploadedFileType {
+      id: string;
+      name: string;
+    }
+    let listUploadedFiles: ListUploadedFileType[] = [];
     if (isDir) {
       fs.readdir(UPLOAD_PATH, (err, files) => {
         if (err) {
           reject();
         }
 
-        files.forEach((file: string, index: number) => {
-          const colorLine = index % 2 ? chalk.green.inverse : chalk.green;
-          process.stdout.write(colorLine(`${index + 1}. `, file, '\n'));
+        files.forEach((file: string) => {
+          const [id, name] = file.split('###');
+          listUploadedFiles.push({
+            id,
+            name,
+          });
         });
+        process.stdout.write(
+          chalk.green(JSON.stringify(listUploadedFiles, null, 2), '\n')
+        );
+
         resolve('done');
       });
     } else {
