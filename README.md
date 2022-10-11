@@ -98,7 +98,7 @@ $ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli del
 ## Setup development
 
 ```bash
-$ cp .env.example .env.development
+$ cp .env.example .env
 $ nvm use
 $ npm i
 ```

@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     tty: true
-    env_file: .env
+    # env_file: .env
     volumes:
       - ./files:/app/files
       - ./jest.config.js:/app/jest.config.js
