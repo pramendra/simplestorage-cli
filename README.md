@@ -4,6 +4,10 @@
 
 A simple file storage server securely helps manage files to servers.
 
+### Demo
+
+![Simple file storage CLI demo](./render1665466253929.gif)
+
 ### Feaatures
 
 #### Functional features
@@ -43,7 +47,7 @@ $ docker-compose up -d --build simple-storage --remove-orphans
 #### CLI help
 
 ```bash
-$ docker run -it  simplestorage-simple-storage cli -h
+$ docker run -it simplestorage-simple-storage cli -h
 ```
 
 ##### CLI output
@@ -71,7 +75,7 @@ $ docker run -it -v $(pwd)/data:/data -v $(pwd)/files:/app/files simplestorage-s
 #### Download a file
 
 ```bash
-$ docker run -it -v $(pwd)/data:/data -v $(pwd)/files:/app/files simplestorage-simple-storage cli download 56b7ff5a-fe49-496a-a21d-00c3c86bb1f6 --out /data
+$ docker run -it -v $(pwd)/data:/data -v $(pwd)/files:/app/files simplestorage-simple-storage cli download 801c360d-6d9b-4c29-ac89-47488a6cef61 --out /data
 
 ```
 
@@ -85,7 +89,7 @@ $ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli lis
 #### Delete a file
 
 ```bash
-$ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli delete cb8e8300-4f4c-45c1-a116-d4a234c7c52f
+$ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli delete f4919957-fefc-4259-95b6-abd3498b47f9
 
 ```
 

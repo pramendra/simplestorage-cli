@@ -1,0 +1,231 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/pramendra/personal/projects/personal/simplestorage
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 97
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 31
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 12
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 300
+    content: "Restored session: Tue Oct 11 14:27:39 JST 2022\r\n"
+  - delay: 186
+    content: "\r\nThe default interactive shell is now zsh.\r\nTo update your account to use zsh, please run `chsh -s /bin/zsh`.\r\nFor more details, please visit https://support.apple.com/kb/HT208050.\r\n\e]0;../projects/personal/simplestorage\a"
+  - delay: 18
+    content: "\e[?1034h\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 7957
+    content: cp .env.example .env.production
+  - delay: 226
+    content: "\r\n"
+  - delay: 12
+    content: "\e]0;../projects/personal/simplestorage\a"
+  - delay: 30
+    content: "\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 5311
+    content: "docker-compose up -d --build simpl \re-storage --remove-orphans"
+  - delay: 267
+    content: "\r\n"
+  - delay: 373
+    content: "\e[1A\e[1B\e[0G\e[?25l[+] Building 0.0s (0/0)                                                                          \r\n\e[?25h"
+  - delay: 101
+    content: "\e[1A\e[0G\e[?25l[+] Building 0.0s (0/1)                                                                          \r\n => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[?25h"
+  - delay: 130
+    content: "\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 0.1s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       0.0s\r\n\e[?25h"
+  - delay: 151
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 0.3s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       0.2s\r\n\e[?25h"
+  - delay: 150
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 0.4s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       0.3s\r\n\e[?25h"
+  - delay: 151
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 0.6s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       0.5s\r\n\e[?25h"
+  - delay: 150
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 0.7s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       0.6s\r\n\e[?25h"
+  - delay: 151
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 0.9s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       0.8s\r\n\e[?25h"
+  - delay: 151
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 1.0s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       0.9s\r\n\e[?25h"
+  - delay: 151
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 1.2s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       1.1s\r\n\e[?25h"
+  - delay: 151
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 1.3s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       1.2s\r\n\e[?25h"
+  - delay: 151
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 1.5s (2/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       1.4s\r\n\e[?25h"
+  - delay: 132
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 1.6s (3/3)                                                                          \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m\e[34m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       1.5s\r\n\e[0m\e[?25h"
+  - delay: 35
+    content: "\e[1A\e[1A\e[1A\e[1A\e[1A\e[1A\e[0G\e[?25l[+] Building 1.7s (14/14) FINISHED                                                               \r\n\e[34m => [internal] load build definition from Dockerfile.production                             0.0s\r\n\e[0m\e[34m => => transferring dockerfile: 43B                                                         0.0s\r\n\e[0m\e[34m => [internal] load .dockerignore                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 34B                                                            0.0s\r\n\e[0m\e[34m => [internal] load metadata for docker.io/library/node:18-alpine3.15                       1.5s\r\n\e[0m\e[34m => [1/9] FROM docker.io/library/node:18-alpine3.15@sha256:e2e77eeb87e4f6f5388f786a878dd15  0.0s\r\n\e[0m\e[34m => [internal] load build context                                                           0.0s\r\n\e[0m\e[34m => => transferring context: 813B                                                           0.0s\r\n\e[0m\e[34m => CACHED [2/9] WORKDIR /app                                                               0.0s\r\n\e[0m\e[34m => CACHED [3/9] COPY package*.json ./                                                      0.0s\r\n\e[0m\e[34m => CACHED [4/9] COPY [ tsconfig.json,.env.production, ./]                                  0.0s\r\n\e[0m\e[34m => CACHED [5/9] COPY src ./src                                                             0.0s\r\n\e[0m\e[34m => CACHED [6/9] RUN npm install                                                            0.0s\r\n\e[0m\e[34m => CACHED [7/9] RUN npm run build                                                          0.0s\r\n\e[0m\e[34m => CACHED [8/9] RUN ln -s /app/dist/cli.js /usr/local/bin/cli                              0.0s\r\n\e[0m\e[34m => CACHED [9/9] RUN chmod ugo+x /usr/local/bin/cli                                         0.0s\r\n\e[0m\e[34m => exporting to image                                                                      0.0s\r\n\e[0m\e[34m => => exporting layers                                                                     0.0s\r\n\e[0m\e[34m => => writing image sha256:1d770796eaaee7351b552f3014cf54f2e86e1d0cf5cd64b24840461f718e55  0.0s\r\n\e[0m\e[34m => => naming to docker.io/library/simplestorage-simple-storage                             0.0s\r\n\e[0m\e[?25h"
+  - delay: 356
+    content: "\e[1A\e[1B\e[0G\e[?25l[+] Running 1/0\r\n\e[34m ⠿ Container simple-storage  Running                                                        0.0s\r\n\e[0m\e[?25h\e]0;../projects/personal/simplestorage\a"
+  - delay: 19
+    content: "\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 4416
+    content: "docker run -it simplestorage-simpl \re-storage cli -h"
+  - delay: 613
+    content: "\r\n"
+  - delay: 440
+    content: "cli [command]\r\n\r\nCommands:\r\n  cli delete <fileid>    Delete a file\r\n  cli download <fileid>  Download a file\r\n  cli list               Lists files\r\n  cli upload <path>      Upload a file\r\n\r\nOptions:\r\n      --version  Show version number                                   [boolean]\r\n  -h, --help     Show help                                             [boolean]\r\n"
+  - delay: 110
+    content: "\e]0;../projects/personal/simplestorage\a"
+  - delay: 28
+    content: "\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 9183
+    content: "docker run -it -v $(pwd)/data:/dat \ra -v $(pwd)/files:/app/files simplestorage-simple-storage cli upload /data/upload-test.txt"
+  - delay: 527
+    content: "\r\n"
+  - delay: 462
+    content: "\e[?7l"
+  - delay: 20
+    content: "\e[?7h\e[1G\e[1G\e[32m[========================================] 100% | /data/upload-test.txt\e[39m\e[0K\r\n"
+  - delay: 5
+    content: "\e[32m\e[39m\r\n\e[32mSuccessfully uploaded: 801c360d-6d9b-4c29-ac89-47488a6cef61\e[39m\r\n\e[32m\e[39m"
+  - delay: 135
+    content: "\e]0;../projects/personal/simplestorage\a"
+  - delay: 26
+    content: "\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 16649
+    content: "docker run -it -v $(pwd)/data:/dat \ra -v $(pwd)/files:/app/files simplestorage-simple-storage cli download 801c360d-6d9b-4c29-ac89-47 \r488a6cef61 --out /data"
+  - delay: 1597
+    content: "\r\n"
+  - delay: 450
+    content: "\e[32m801c360d-6d9b-4c29-ac89-47488a6cef61 downloaded successfully\e[39m\r\n\e[32m\e[39m"
+  - delay: 117
+    content: "\e]0;../projects/personal/simplestorage\a"
+  - delay: 17
+    content: "\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 6233
+    content: "docker run -it -v $(pwd)/files:/ap \rp/files simplestorage-simple-storage cli list"
+  - delay: 375
+    content: "\r\n"
+  - delay: 448
+    content: "\e[32m[\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"03d42f8e-ff3e-459e-a93a-c797df52d036\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"0573d16e-8bac-4065-b23f-834f4bf90636\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"274817e2-01fe-4705-845b-863b676a990f\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"58d79e23-0ded-4b27-8d4f-55c524b9d4b2\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"61edbe88-7e70-456b-9f77-561b18056a03\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"64f76b1a-cdc9-4136-acbc-f0e383d4bcd0\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"660036f6-0178-4eee-a422-c1e767fd8da3\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"76fa35ef-5942-4be0-9275-38f144537e21\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"801c360d-6d9b-4c29-ac89-47488a6cef61\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"88d56757-1ffd-428d-9f06-b67323e2bdd0\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"a2d36570-0bb1-4192-b464-6f28553c4fd6\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"b1d1cf67-36f4-4939-b75b-ef000c8bbcd4\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"caf13d9e-a54e-49c3-88bf-6112471e29bb\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"cb3d992a-df0e-40a4-b28a-9f2544b641e1\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"d9a746ae-b0c7-467e-92ba-6c8770c24e92\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  },\e[39m\r\n\e[32m  {\e[39m\r\n\e[32m    \"id\": \"f4919957-fefc-4259-95b6-abd3498b47f9\",\e[39m\r\n\e[32m    \"name\": \"upload-test.txt\"\e[39m\r\n\e[32m  }\e[39m\r\n\e[32m] \e[39m\r\n\e[32m\e[39m"
+  - delay: 99
+    content: "\e]0;../projects/personal/simplestorage\a"
+  - delay: 18
+    content: "\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 26702
+    content: "docker run -it -v $(pwd)/files:/ap \rp/files simplestorage-simple-storage cli delete f4919957-fefc-4259-95b6-abd3498b47f9"
+  - delay: 880
+    content: "\r\n"
+  - delay: 434
+    content: "\e[31mf4919957-fefc-4259-95b6-abd3498b47f9 deleted successfully\e[39m\r\n\e[31m\e[39m"
+  - delay: 106
+    content: "\e]0;../projects/personal/simplestorage\a"
+  - delay: 19
+    content: "\e[92mpramendra\e[37m@\e[36mPKXJ6NPMFQ \e[33m../projects/personal/simplestorage\e[92m main\e[33m ❯ \e(B\e[m"
+  - delay: 1955
+    content: e
+  - delay: 172
+    content: x
+  - delay: 149
+    content: i
+  - delay: 151
+    content: t
+  - delay: 213
+    content: "\r\nlogout\r\n\r\nSaving session..."
+  - delay: 16
+    content: "\r\n...saving history..."
+  - delay: 11
+    content: "truncating history files...\r\n...completed.\r\n"
