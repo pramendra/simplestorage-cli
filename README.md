@@ -46,7 +46,7 @@ Options:
 #### Upload a file
 
 ```bash
-$ docker run -it -v $(pwd)/data:/data -v $(pwd)/files:/app/files simplestorage-simple-storage cli upload /test/upload-test.txt
+$ docker run -it -v $(pwd)/data:/data -v $(pwd)/files:/app/files simplestorage-simple-storage cli upload /data/upload-test.txt
 ```
 
 #### Download a file
