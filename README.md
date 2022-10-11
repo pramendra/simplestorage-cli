@@ -18,6 +18,25 @@ A simple file storage server securely helps manage files to servers.
 
 - Files are protected with encryption
 - Supports CLI help
+- Supports file encoding
+
+---
+
+### Build production
+
+#### Prepare environment variable
+
+```bash
+$ cp .env.example .env.production
+```
+
+> update environement variable
+
+#### Build docker image
+
+```bash
+$ docker-compose up -d --build simple-storage --remove-orphans
+```
 
 ### How it works
 
@@ -68,24 +87,6 @@ $ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli lis
 ```bash
 $ docker run -it -v $(pwd)/files:/app/files simplestorage-simple-storage cli delete cb8e8300-4f4c-45c1-a116-d4a234c7c52f
 
-```
-
----
-
-## Build production
-
-### Prepare environment variable
-
-```bash
-$ cp .env.example .env.production
-```
-
-> update environement variable
-
-### Build docker image
-
-```bash
-$ docker-compose up -d --build simple-storage --remove-orphans
 ```
 
 ---
