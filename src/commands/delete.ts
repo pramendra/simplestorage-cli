@@ -1,7 +1,12 @@
 import type { Arguments, CommandBuilder } from 'yargs';
 import fs from 'fs';
 import chalk from 'chalk';
-import { getFileInfo, getDecryptFilePath } from '../utilities/file';
+import {
+  getFileInfo,
+  getDecryptFilePath,
+  findFileByID,
+  UPLOAD_PATH,
+} from '../utilities/file';
 
 type Options = {
   fileid: string;
@@ -15,13 +20,24 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
 
 export const handler = async (argv: Arguments<Options>): Promise<void> => {
   const { fileid } = argv;
+  const matchedSourceFileName = (await findFileByID(UPLOAD_PATH, fileid)) || '';
 
   await new Promise((resolve, reject) => {
+    try {
+      if (matchedSourceFileName === null) {
+        reject();
+      }
+    } catch (error) {
+      reject();
+    }
+
     const {
       //
       isFile,
       filePath,
-    } = getFileInfo(getDecryptFilePath(fileid));
+    } = getFileInfo(
+      getDecryptFilePath([fileid, matchedSourceFileName].join('###'))
+    );
 
     if (isFile) {
       try {

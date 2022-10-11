@@ -148,3 +148,4 @@ dist
 !.vscode
 files/*
 db/*
+data/*
